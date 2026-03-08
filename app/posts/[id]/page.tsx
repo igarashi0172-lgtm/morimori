@@ -23,7 +23,7 @@ export default async function PostDetailPage({ params }: Props) {
   let images: string[] = [];
   try { images = JSON.parse(post.mediaUrls); } catch { images = []; }
 
-  const isLiked = session?.user?.id ? post.likes.some(l => l.userId === session.user.id) : false;
+  const isLiked = session?.user?.id ? post.likes.some(l => l.userId === session!.user!.id) : false;
 
   return (
     <div className="max-w-2xl mx-auto px-5 py-12">
