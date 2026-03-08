@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #fafaf8;
+  --bg-2: #f4f1ec;
+  --surface: #ffffff;
+  --border: #e8e4dc;
+  --border-2: #d0cbc0;
+  --ink: #18160f;
+  --ink-2: #5c5446;
+  --ink-3: #9e9385;
+  --pop: #f5c800;
+  --pop-hover: #e0b700;
+  --pop-light: #fffbde;
+  --red: #e8350a;
+  --red-light: #fff1ee;
+  --green: #1a7a3a;
+  --green-light: #edfbf2;
+  --shadow-card: 0 2px 8px rgba(24, 22, 15, 0.08);
+  --shadow-hover: 0 8px 28px rgba(24, 22, 15, 0.14);
+  --shadow-btn: 0 3px 0 rgba(24, 22, 15, 0.85);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* --- Typography --- */
+.font-display {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+
+/* --- Focus --- */
+*:focus-visible {
+  outline: 2px solid var(--pop);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- Selection --- */
+::selection { background: var(--pop); color: var(--ink); }
+
+/* ============================
+   Buttons
+============================ */
+
+/* Primary — 黒地に黄色テキスト、底に黒影で「押せる感」 */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ink);
+  color: var(--pop);
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(24, 22, 15, 0.85);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(24, 22, 15, 0.85);
+}
+
+/* Secondary — 白地に黒枠 */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(24, 22, 15, 0.85);
+}
+.btn-secondary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(24, 22, 15, 0.85);
+}
+
+/* Yellow — 黄色地 */
+.btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--pop);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-yellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(24, 22, 15, 0.85);
+}
+.btn-yellow:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(24, 22, 15, 0.85);
+}
+
+/* ============================
+   Navbar
+============================ */
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: color 0.12s, background-color 0.12s;
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: var(--ink);
+  background-color: var(--bg-2);
+}
+
+/* ============================
+   Cards
+============================ */
+.card-base {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.card-base:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================
+   Tag / Badge
+============================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1.5px solid currentColor;
+}
+.tag-yellow { color: var(--ink); background: var(--pop); border-color: var(--ink); }
+.tag-red { color: var(--red); background: var(--red-light); border-color: var(--red); }
+.tag-green { color: var(--green); background: var(--green-light); border-color: var(--green); }
+.tag-outline { color: var(--ink-2); background: transparent; border-color: var(--border-2); }
+
+/* ============================
+   Input / Form
+============================ */
+.input-base {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+.input-base:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(245, 200, 0, 0.3);
+}
+.input-base::placeholder { color: var(--ink-3); }
+
+.label-base {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.hover-bg:hover { background-color: var(--bg-2) !important; }
